@@ -60,6 +60,24 @@ for (key, value) in works {
     print("\(key): \(value)")
 }
 
+// 范围：..< 不包含上界，...包含上界
+for n in 0..<10 {
+    print(n)
+}
+
+// while
+var n = 0
+while n < 3 {
+    print(n)
+    n = n + 1
+}
+
+// do while
+repeat {
+    print(n)
+    n = n + 1
+} while n < 8
+
 // 缺省值
 if let a = age {
     print("\(a) set.")
@@ -67,5 +85,44 @@ if let a = age {
 
 // 设置默认值
 age ?? 20
+
+// 函数
+func getWork (id: String) -> String {
+    return works[id] ?? ""
+}
+
+getWork(id: "0001")
+
+// 参数：[实参] 形参: 类型，_忽略，可变参数...
+func printInfo (p name: String, _ age: Int, _ args: String...) {
+    print("\(name): \(age), \(args)")
+}
+printInfo(p: "honpery", 20, "demo", "asdas")
+
+
+// 多返回值
+func getInfo (name: String, age: Int) -> (String, Int) {
+    return (name, age)
+}
+getInfo(name: "honpery", age: 20)
+
+// 一等公民
+func fetch (cb: (_ id: String) -> String) {
+    print("begin")
+    cb("0001")
+}
+fetch(cb: getWork)
+
+// 闭包
+students.map({
+    (student: String) -> String in
+    return student
+})
+students.map({student in student})
+students.sorted {$0 > $1}
+
+
+
+
 
 
